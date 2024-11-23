@@ -1359,6 +1359,10 @@ void Canvas::mouseDown(MouseEvent const& e)
                 }
             }
 
+            if (!e.mods.isShiftDown()) {
+                deselectAll();
+            }
+
             //if (!e.mods.isShiftDown()) {
             //    deselectAll();
             //}

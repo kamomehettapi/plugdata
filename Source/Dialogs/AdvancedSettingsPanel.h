@@ -54,7 +54,7 @@ public:
 
         commandClickSwitchesModeValue.referTo(settingsFile->getPropertyAsValue("cmd_click_switches_mode"));
         commandClickSwitchesModeValue.addListener(this);
-        interfaceProperties.add(new PropertiesPanel::BoolComponent("Command/Ctrl + left click on canvas switches edit/run mode", commandClickSwitchesModeValue, { "No", "Yes" }));
+        interfaceProperties.add(new PropertiesPanel::BoolComponent("Command/Ctrl + click on canvas switches mode", commandClickSwitchesModeValue, { "No", "Yes" }));
 
         showAllAudioDeviceValues.referTo(settingsFile->getPropertyAsValue("show_all_audio_device_rates"));
         showAllAudioDeviceValues.addListener(this);
