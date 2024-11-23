@@ -1344,26 +1344,29 @@ void Canvas::mouseDown(MouseEvent const& e)
             dragState.wasDuplicated = false;
             cancelConnectionCreation();
 
-            if (e.mods.isCommandDown()) {
-                // Lock if cmd + click on canvas
-                deselectAll();
+            if (SettingsFile::getInstance()->getProperty<bool>("cmd_click_switches_mode")) {
+                if (e.mods.isCommandDown()) {
+                    // Lock if cmd + click on canvas
+                    deselectAll();
 
-                presentationMode.setValue(false);
+                    presentationMode.setValue(false);
 
-                // when command + click on canvas, swap between locked / edit mode
-                locked.setValue(!locked.getValue());
-                locked.getValueSource().sendChangeMessage(true);
+                    // when command + click on canvas, swap between locked / edit mode
+                    locked.setValue(!locked.getValue());
+                    locked.getValueSource().sendChangeMessage(true);
 
-                updateOverlays();
+                    updateOverlays();
+                }
             }
-            if (!e.mods.isShiftDown()) {
-                deselectAll();
-            }
 
-            if (!(e.source.isTouch() && e.source.getIndex() != 0) && !getValue<bool>(locked)) {
-                lasso.beginLasso(e.getEventRelativeTo(this), this);
-                isDraggingLasso = true;
-            }
+            //if (!e.mods.isShiftDown()) {
+            //    deselectAll();
+            //}
+
+            //if (!(e.source.isTouch() && e.source.getIndex() != 0) && !getValue<bool>(locked)) {
+            //    lasso.beginLasso(e.getEventRelativeTo(this), this);
+            //    isDraggingLasso = true;
+            //}
         }
 
         // Update selected object in sidebar when we click a object
